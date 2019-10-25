@@ -38,7 +38,11 @@ class FormularioTransferencia extends StatelessWidget {
             child: TextField(
               controller: _valueTextController,
               style: TextStyle(fontSize: 24.0),
-              decoration: InputDecoration(labelText: 'Valor', hintText: '0.00'),
+              decoration: InputDecoration(
+                icon: Icon(Icons.monetization_on),
+                labelText: 'Valor',
+                hintText: '0.00',
+              ),
               keyboardType: TextInputType.number,
             ),
             padding: const EdgeInsets.all(16.0),
@@ -47,8 +51,10 @@ class FormularioTransferencia extends StatelessWidget {
             child: Text('Confirmar'),
             onPressed: () {
               debugPrint('button click');
-              final int accountNumber = int.tryParse(_accountNumberTextController.text);
-              final double value = double.tryParse(_accountNumberTextController.text);
+              final int accountNumber =
+                  int.tryParse(_accountNumberTextController.text);
+              final double value =
+                  double.tryParse(_accountNumberTextController.text);
 
               if (accountNumber != null && value != null) {
                 Transferencia(value, accountNumber);
