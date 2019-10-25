@@ -56,9 +56,9 @@ class ListaTransferencias extends StatelessWidget {
       appBar: AppBar(title: Text('Transferências')),
       body: Column(
         children: <Widget>[
-          ItemTransferencia(Transferencia(100.0, '1000')),
-          ItemTransferencia(Transferencia(200.0, '1002')),
-          ItemTransferencia(Transferencia(300.0, '2000')),
+          ItemTransferencia(Transferencia(100.0, 1000)),
+          ItemTransferencia(Transferencia(200.0, 1002)),
+          ItemTransferencia(Transferencia(300.0, 2000)),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -80,7 +80,7 @@ class ItemTransferencia extends StatelessWidget {
       child: ListTile(
         leading: Icon(Icons.monetization_on),
         title: Text(_transferencia._valor.toString()),
-        subtitle: Text(_transferencia._numeroDaConta),
+        subtitle: Text(_transferencia._numeroDaConta.toString()),
       ),
     );
   }
@@ -88,7 +88,7 @@ class ItemTransferencia extends StatelessWidget {
 
 class Transferencia {
   final double _valor;
-  final String _numeroDaConta;
+  final int _numeroDaConta;
 
   Transferencia(this._valor, this._numeroDaConta);
 }
