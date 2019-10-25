@@ -14,37 +14,49 @@ class BytebankApp extends StatelessWidget {
 }
 
 class FormularioTransferencia extends StatelessWidget {
+  final TextEditingController _accountNumberTextController =
+      TextEditingController();
+  final TextEditingController _valueTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Criando Transferência')),
-      body: Column(children: <Widget>[
-        Padding(
-          child: TextField(
-            style: TextStyle(fontSize: 24.0),
-            decoration: InputDecoration(
-              labelText: 'Número da Conta',
-              hintText: '0000'
+      body: Column(
+        children: <Widget>[
+          Padding(
+            child: TextField(
+              controller: _accountNumberTextController,
+              style: TextStyle(fontSize: 24.0),
+              decoration: InputDecoration(
+                  labelText: 'Número da Conta', hintText: '0000'),
+              keyboardType: TextInputType.number,
             ),
-            keyboardType: TextInputType.number,),
-          padding: const EdgeInsets.all(16.0),
-        ),
-        Padding(
-          child: TextField(
-            style: TextStyle(fontSize: 24.0),
-            decoration: InputDecoration(
-              labelText: 'Valor',
-              hintText: '0.00'
-            ),
-            keyboardType: TextInputType.number,
+            padding: const EdgeInsets.all(16.0),
           ),
-          padding: const EdgeInsets.all(16.0),
-        ),
-        RaisedButton(
-          child: Text('Confirmar'),
-        )
-      ],)
-      ,
+          Padding(
+            child: TextField(
+              controller: _valueTextController,
+              style: TextStyle(fontSize: 24.0),
+              decoration: InputDecoration(labelText: 'Valor', hintText: '0.00'),
+              keyboardType: TextInputType.number,
+            ),
+            padding: const EdgeInsets.all(16.0),
+          ),
+          RaisedButton(
+            child: Text('Confirmar'),
+            onPressed: () {
+              debugPrint('button click');
+              final int accountNumber = int.tryParse(_accountNumberTextController.text);
+              final double value = double.tryParse(_accountNumberTextController.text);
+
+              if (accountNumber != null && value != null) {
+                Transferencia(value, accountNumber);
+              }
+            },
+          )
+        ],
+      ),
     );
   }
 }
