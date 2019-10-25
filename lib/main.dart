@@ -54,7 +54,7 @@ class FormularioTransferencia extends StatelessWidget {
               final int accountNumber =
                   int.tryParse(_accountNumberTextController.text);
               final double value =
-                  double.tryParse(_accountNumberTextController.text);
+                  double.tryParse(_valueTextController.text);
 
               if (accountNumber != null && value != null) {
                 final Transferencia t = Transferencia(value, accountNumber);
