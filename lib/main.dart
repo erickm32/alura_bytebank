@@ -57,7 +57,8 @@ class FormularioTransferencia extends StatelessWidget {
                   double.tryParse(_accountNumberTextController.text);
 
               if (accountNumber != null && value != null) {
-                Transferencia(value, accountNumber);
+                final Transferencia t = Transferencia(value, accountNumber);
+                Scaffold.of(context).showSnackBar( SnackBar(content: Text('$t')));
               }
             },
           )
@@ -109,4 +110,9 @@ class Transferencia {
   final int _numeroDaConta;
 
   Transferencia(this._valor, this._numeroDaConta);
+
+  @override
+  String toString() {
+    return 'Transferencia de $_valor para $_numeroDaConta.';
+  }
 }
