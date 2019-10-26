@@ -1,6 +1,7 @@
 # bytebank
 
-A new Flutter project.
+A simple Flutter project. My first Flutter project.
+It is just a two page app that you can, from the starting page, list all your "bank transfers" and go to the page where you can fill the form to create another "transfer".
 
 ## Getting Started
 
