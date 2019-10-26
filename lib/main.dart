@@ -82,15 +82,24 @@ class Editor extends StatelessWidget {
   }
 }
 
-class TransfersList extends StatelessWidget {
+class TransfersList extends StatefulWidget {
   final List<Transfer> _transfers = List();
+
+  @override
+  State<StatefulWidget> createState() {
+    return TransfersListState();
+  }
+}
+
+class TransfersListState extends State<TransfersList> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Transferências')),
       body: ListView.builder(
-        itemCount: _transfers.length,
-        itemBuilder: (context, index) => TransferItem(_transfers[index]),
+        itemCount: widget._transfers.length,
+        itemBuilder: (context, index) => TransferItem(widget._transfers[index]),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
@@ -106,7 +115,7 @@ class TransfersList extends StatelessWidget {
     }));
     future.then((createdTransfer) {
       debugPrint('$createdTransfer');
-      _transfers.add(createdTransfer);
+      widget._transfers.add(createdTransfer);
     });
   }
 }
