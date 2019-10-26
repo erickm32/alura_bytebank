@@ -14,7 +14,6 @@ class BytebankApp extends StatelessWidget {
 }
 
 class TransferForm extends StatefulWidget {
-
   @override
   State<StatefulWidget> createState() {
     return TransferFormState();
@@ -125,7 +124,9 @@ class TransfersListState extends State<TransfersList> {
     future.then((createdTransfer) {
       debugPrint('$createdTransfer');
       if (createdTransfer != null) {
-        widget._transfers.add(createdTransfer);
+        setState(() {
+          widget._transfers.add(createdTransfer);
+        });
       }
     });
   }
