@@ -115,7 +115,9 @@ class TransfersListState extends State<TransfersList> {
     }));
     future.then((createdTransfer) {
       debugPrint('$createdTransfer');
-      widget._transfers.add(createdTransfer);
+      if (createdTransfer != null) {
+        widget._transfers.add(createdTransfer);
+      }
     });
   }
 }
