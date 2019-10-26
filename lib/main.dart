@@ -7,13 +7,13 @@ class BytebankApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: FormularioTransferencia(),
+        body: TransfersList(),
       ),
     );
   }
 }
 
-class FormularioTransferencia extends StatelessWidget {
+class TransferForm extends StatelessWidget {
   final TextEditingController _accountNumberTextController =
       TextEditingController();
   final TextEditingController _valueTextController = TextEditingController();
@@ -51,7 +51,7 @@ class FormularioTransferencia extends StatelessWidget {
 
     if (accountNumber != null && value != null) {
       final Transfer t = Transfer(value, accountNumber);
-      Scaffold.of(context).showSnackBar(SnackBar(content: Text('$t')));
+      Navigator.pop(context, t);
     }
   }
 }
@@ -96,10 +96,20 @@ class TransfersList extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: null,
+        onPressed: () => _callCreateTransferForm(context),
       ),
     );
   }
+}
+
+void _callCreateTransferForm(context) {
+  final Future<Transfer> future = Navigator.push(
+      context, MaterialPageRoute(builder: (context) {
+        return TransferForm();
+      }));
+  future.then((createdTransfer) {
+    debugPrint('$createdTransfer');
+  });
 }
 
 class TransferItem extends StatelessWidget {
