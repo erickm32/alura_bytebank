@@ -13,7 +13,15 @@ class BytebankApp extends StatelessWidget {
   }
 }
 
-class TransferForm extends StatelessWidget {
+class TransferForm extends StatefulWidget {
+
+  @override
+  State<StatefulWidget> createState() {
+    return TransferFormState();
+  }
+}
+
+class TransferFormState extends State<TransferForm> {
   final TextEditingController _accountNumberTextController =
       TextEditingController();
   final TextEditingController _valueTextController = TextEditingController();
@@ -22,24 +30,26 @@ class TransferForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Criando Transferência')),
-      body: Column(
-        children: <Widget>[
-          Editor(
-            controller: _accountNumberTextController,
-            hintText: '0000',
-            labelText: 'Número da Conta',
-          ),
-          Editor(
-            controller: _valueTextController,
-            hintText: '00.0',
-            labelText: 'Valor',
-            icon: Icons.monetization_on,
-          ),
-          RaisedButton(
-            child: Text('Confirmar'),
-            onPressed: () => _createTransfer(context),
-          )
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Editor(
+              controller: _accountNumberTextController,
+              hintText: '0000',
+              labelText: 'Número da Conta',
+            ),
+            Editor(
+              controller: _valueTextController,
+              hintText: '00.0',
+              labelText: 'Valor',
+              icon: Icons.monetization_on,
+            ),
+            RaisedButton(
+              child: Text('Confirmar'),
+              onPressed: () => _createTransfer(context),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -92,7 +102,6 @@ class TransfersList extends StatefulWidget {
 }
 
 class TransfersListState extends State<TransfersList> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
