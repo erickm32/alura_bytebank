@@ -50,7 +50,7 @@ class FormularioTransferencia extends StatelessWidget {
     final double value = double.tryParse(_valueTextController.text);
 
     if (accountNumber != null && value != null) {
-      final Transferencia t = Transferencia(value, accountNumber);
+      final Transfer t = Transfer(value, accountNumber);
       Scaffold.of(context).showSnackBar(SnackBar(content: Text('$t')));
     }
   }
@@ -82,16 +82,16 @@ class Editor extends StatelessWidget {
   }
 }
 
-class ListaTransferencias extends StatelessWidget {
+class TransfersList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Transferências')),
       body: Column(
         children: <Widget>[
-          ItemTransferencia(Transferencia(100.0, 1000)),
-          ItemTransferencia(Transferencia(200.0, 1002)),
-          ItemTransferencia(Transferencia(300.0, 2000)),
+          TransferItem(Transfer(100.0, 1000)),
+          TransferItem(Transfer(200.0, 1002)),
+          TransferItem(Transfer(300.0, 2000)),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -102,31 +102,31 @@ class ListaTransferencias extends StatelessWidget {
   }
 }
 
-class ItemTransferencia extends StatelessWidget {
-  final Transferencia _transferencia;
+class TransferItem extends StatelessWidget {
+  final Transfer _transfer;
 
-  const ItemTransferencia(this._transferencia);
+  const TransferItem(this._transfer);
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
         leading: Icon(Icons.monetization_on),
-        title: Text(_transferencia._valor.toString()),
-        subtitle: Text(_transferencia._numeroDaConta.toString()),
+        title: Text(_transfer._value.toString()),
+        subtitle: Text(_transfer._accountNumber.toString()),
       ),
     );
   }
 }
 
-class Transferencia {
-  final double _valor;
-  final int _numeroDaConta;
+class Transfer {
+  final double _value;
+  final int _accountNumber;
 
-  Transferencia(this._valor, this._numeroDaConta);
+  Transfer(this._value, this._accountNumber);
 
   @override
   String toString() {
-    return 'Transferencia de $_valor para $_numeroDaConta.';
+    return 'Transferencia de $_value para $_accountNumber.';
   }
 }
